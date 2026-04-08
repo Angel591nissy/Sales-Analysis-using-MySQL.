@@ -26,4 +26,5 @@ select count(order_id) as `order list`, customer_name from sales group by custom
 # Q11 : Rank 5 products based on total sales using rank().
 # there are four type of ranking function: 1. row_number, 2. rank(), 3. dense_rank(), 4. ntile().
 select product_name, sum(total_amount) as `total sales`, rank() over (order by sum(total_amount) desc) as sales_rank from sales group by product_name limit 5;
-
+# Q12: Calculate the total sales for each year.
+select year(STR_TO_DATE(order_date, '%d/%m/%Y')) as Year, sum(total_amount) as Total_Sales from company.sales group by year(STR_TO_DATE(order_date, '%d/%m/%Y')) order by Year DESC; 
